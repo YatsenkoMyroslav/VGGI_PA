@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <title>PA#3</title>
+    <title>PA#4</title>
     <style>
         body {
             background-color: #EEEEEE;
@@ -41,29 +41,36 @@
     <h2>Neovius Surface</h2>
     <div class="inputContainer">
         <p>U Min:</p>
-        <input type="number" name="UMin" id="UMin" min ="-5" max="5" step="0.1" value="-1.5707963267948966" onchange="update()" >
-    </div>
-    <div class="inputContainer">
+        <input type="number" name="UMin" id="UMin" min ="-5" max="5" step="0.1" value="-1.5707963267948966">
+
         <p>U Max:</p>
-        <input type="number" name="UMax" id="UMax" min ="-5" max="5" step="0.1" value="1.5707963267948966" onchange="update()" >
+        <input type="number" name="UMax" id="UMax" min ="-5" max="5" step="0.1" value="1.5707963267948966">
     </div>
+
     <div class="inputContainer">
         <p>V Min:</p>
-        <input type="number" name="VMin" id="VMin" min ="-5" max="5" step="0.1" value="-1.5707963267948966" onchange="update()" >
-    </div>
-    <div class="inputContainer">
+        <input type="number" name="VMin" id="VMin" min ="-5" max="5" step="0.1" value="-1.5707963267948966">
+
         <p>V Max:</p>
-        <input type="number" name="VMax" id="VMax" min ="-5" max="5" step="0.1" value="1.5707963267948966" onchange="update()" >
+        <input type="number" name="VMax" id="VMax" min ="-5" max="5" step="0.1" value="1.5707963267948966">
     </div>
+
     <div class="inputContainer">
         <p>U Steps:</p>
-        <input type="number" name="USteps" id="USteps" min ="2" max="100" step="1" value="20" onchange="update()" >
-    </div>
-    <div class="inputContainer">
+        <input type="number" name="USteps" id="USteps" min ="2" max="100" step="1" value="300">
+
         <p>V Steps:</p>
-        <input type="number" name="VSteps" id="VSteps" min ="2" max="100" step="1" value="20" onchange="update()" >
+        <input type="number" name="VSteps" id="VSteps" min ="2" max="100" step="1" value="300">
     </div>
+    
+    <div class="inputContainer">
+        <p>Angle:</p>
+        <input type="number" name="Angle" id="Angle" min ="0" max="360" step="1" value="0.0">
+    </div>
+    
     <div id="canvas-holder" style="position: relative, overflow: scroll">
+        <p id="coordinates">Coordinates: (0, 0)</p>
+        <canvas width="700" height="700" id="uvcanvas"></canvas>
         <canvas width="700" height="700" id="webglcanvas"></canvas>
     </div>
 

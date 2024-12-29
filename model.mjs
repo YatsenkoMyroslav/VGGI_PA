@@ -96,6 +96,10 @@ export default function Model(gl, shProgram) {
     this.idTextureNormal = LoadTexture(gl, "./textures/normal.jpg");
     this.idTextureSpecular = LoadTexture(gl, "./textures/specular.jpg");
 
+    this.point = [0.5, 0.5];
+    this.uvBuffer = [];
+    this.indexBuffer = [];
+
     this.count = 0;
 
     this.BufferData = function(vertices, normals, tangents, uvs, indices) {
@@ -112,7 +116,10 @@ export default function Model(gl, shProgram) {
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(tangents), gl.STATIC_DRAW);
 
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.iIndexBuffer);
-        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint32Array(indices), gl.STATIC_DRAW);
+
+        this.uvBuffer = uvs;
+        this.indexBuffer = indices;
 
         this.count = indices.length;
     };
@@ -143,7 +150,10 @@ export default function Model(gl, shProgram) {
         gl.activeTexture(gl.TEXTURE2);
         gl.bindTexture(gl.TEXTURE_2D, this.idTextureSpecular);
 
-        gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_SHORT, 0);
+        gl.uniform2fv(shProgram.iPoint, this.point);
+        gl.uniform1f(shProgram.iAngle, parseFloat(document.getElementById('Angle').value) * (Math.PI / 180.0));
+
+        gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
     }
 
     this.CreateSurfaceData = function() {
